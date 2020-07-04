@@ -61,3 +61,14 @@ php spark serve
 ```
 
 *5.* Open web browser http://localhost:8080
+
+Admin akun
+--------
+email : admin@gmail.com
+pass  : admin
+
+
+Petugas akun
+--------
+email : petugas@gmail.com
+pass  : petugas
