@@ -26,7 +26,7 @@ Requirements
 git clone https://github.com/RobbiAbd/e-voting-ci.git
 ```
 
-*2.* Buka project dan jalankan npm install
+*2.* Buka project dan jalankan composer install
 ```bash
 composer install
 ```
