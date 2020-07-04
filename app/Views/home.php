@@ -1,0 +1,45 @@
+<?= $this->extend('layouts/master_voting') ?>
+
+<?= $this->section('title') ?>
+    <?= $title; ?>
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
+<?= $this->include('partials/partials_user/navbar') ?>
+	
+	<section id="home">
+	 <div class="container">
+      <div class="content mt-5 mb-5">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="steps">
+              <div class="row align-item-center">
+                <div class="col-12 col-sm-6 order-sm-2">
+                  <div class="steps_image">
+                    <img src="/assets/img/undraw_security_o890.svg" class="img-fluid" width="500">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 order-sm-1">
+                  <p class="h1 text-dark text-uppercase">Selamat Datang di EVoting Osis App</p>  
+
+                  <p class="mt-3 text-dark">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis doloribus enim repellat ipsam eum illum quod voluptate unde, beatae nobis quasi praesentium qui eligendi veniam saepe harum quidem sint perferendis! </p>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <a href="<?= base_url('voting') ?>" class="btn btn-warning">Mulai Voting</a>
+
+                      <a href="<?= base_url('tentang') ?>" class="btn btn-info">Tentang Kami</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </section>
+
+
+<?= $this->include('partials/partials_user/footer') ?>
+<?= $this->endSection() ?>

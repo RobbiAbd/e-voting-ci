@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;1,600&display=swap');
+
+* 
+{
+	margin: 0;
+	padding: 0;
+}
+
+body 
+{
+	font-family: 'Raleway', sans-serif;
+}
+
+.btn-token:hover
+{
+	color: black!important;
+}
+
+/* For page Home */
+.more-text {
+  cursor: pointer;
+}
+
+.section_header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.section--how-to_title {
+  text-align: center;
+  color: #2880ce;
+}
+
+.steps-verification {
+  margin-bottom: 15px;
+}
+
+.text-blue {
+  color: #2880ce;
+}
+
+.text-orange {
+  color: #f29100;
+}
+
+.yellow-line {
+  position: relative;
+  display: inline-block;
+  top: -3px;
+  left: 0;
+  margin-left: 0;
+  width: 120px;
+  height: 2px;
+  background-color: #ffd629;
+  font-weight: 700px;
+  border-top: 0;
+}
+
+.testi-card .card {
+  border: 0;
+}
+
+.testi-card .card .card-header {
+  background-color: transparent; 
+}
+
+#sticky-footer {
+  flex-shrink: 0;
+}
+
+.navbar-light .navbar-toggler {
+  border-color: transparent;
+}
+
+.btn-purple {
+  color: #fff;
+  background-color: #363062;
+  border-color: #363062;
+}
+
+.font-raleway {
+ font-family: 'Raleway', sans-serif;
+}
+
+/* End For page Home */
+
+
+/* Love footer icon */
+.heart {
+  animation: beat .25s infinite alternate;
+  transform-origin: center;
+}
+
+@keyframes beat{
+  to { transform: scale(1.4); }
+}
+/* End Love footer icon */
+
+/*for card image same size*/
+.card-img-top {
+width: 100%;
+height: 40vh;
+object-fit: cover;
+}
