@@ -22,7 +22,7 @@
                 <div class="col-12 col-sm-6 order-sm-1">
                   <p class="h1 text-dark text-uppercase">Selamat Datang di EVoting Osis App</p>  
 
-                  <p class="mt-3 text-dark">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis doloribus enim repellat ipsam eum illum quod voluptate unde, beatae nobis quasi praesentium qui eligendi veniam saepe harum quidem sint perferendis! </p>
+                  <p class="mt-3 text-dark">Aplikasi E-voting di buat dengan PHP Framework Codeigniter 4 dan Bootstrap. </p>
 
                   <div class="row">
                     <div class="col-md-6">

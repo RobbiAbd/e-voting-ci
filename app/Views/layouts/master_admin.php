@@ -125,7 +125,7 @@
 
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; EVOTING APP 2020 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
+          Copyright &copy; EVOTING APP 2020 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a> and Made by <a href="https://github.com/robbiabd">Robbi Abdul Rohman</a>
         </div>
         <div class="footer-right">
           2.3.0
