@@ -141,7 +141,7 @@
     <script src="/assets/bootstrap/popper.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 
-    <script src="/assets/nicescroll/dist/jquery.nicescroll.min.js"></script>
+    <script src="/assets/nicescroll/jquery.nicescroll.js"></script>
     <script src="/assets/stisla/assets/js/stisla.js"></script>
     
 

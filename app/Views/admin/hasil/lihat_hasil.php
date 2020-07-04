@@ -110,7 +110,7 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('script') ?>
-  <script src="/assets/chart.js/dist/Chart.min.js"></script>
+  <script src="/assets/chart.js/chart/Chart.min.js"></script>
 
   <script>
     var ctx = document.getElementById("myChart").getContext('2d');
