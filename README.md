@@ -28,7 +28,7 @@ git clone https://github.com/RobbiAbd/e-voting-ci.git
 
 *2.* Buka project dan jalankan npm install
 ```bash
-npm install
+composer install
 ```
 
 *3.* import database
