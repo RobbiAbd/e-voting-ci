@@ -131,6 +131,7 @@ class Users extends BaseController
 	        $data = [];
 	        $no = $request->getPost("start");
 	        foreach ($lists as $list) {
+	        	if ($list->email != 'admin@gmail.com') {
 	                $no++;
 	                $row = [];
 	                $row[] = $no;
@@ -141,6 +142,7 @@ class Users extends BaseController
 	                $row[] = '<a class="btn btn-warning" href="'.base_url('admin/user/edit/'.$list->id_user).'">Edit</a> 
 	                			<a class="btn btn-danger btn-delete" href="javascript:void(0)" data-id="'.$list->id_user.'">Hapus</a>';
 	                $data[] = $row;
+	        	}
 	    }
 
 	    $output = ["draw" => $request->getPost('draw'),

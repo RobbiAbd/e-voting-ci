@@ -11,8 +11,6 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css">
 
-    <link rel="stylesheet" href="/assets/stisla/node_modules/bootstrap-social/bootstrap-social.css">
-
   <!-- Template CSS -->
   <link rel="stylesheet" href="/assets/stisla/assets/css/style.css">
   <link rel="stylesheet" href="/assets/stisla/assets/css/components.css">
@@ -28,8 +26,7 @@
     <script src="/assets/bootstrap/popper.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 
-    <script src="/assets/stisla/node_modules/nicescroll/dist/jquery.nicescroll.min.js"></script>
-    <script src="/assets/stisla/node_modules/moment/min/moment.min.js"></script>
+    <script src="/assets/nicescroll/dist/jquery.nicescroll.min.js"></script>
     <script src="/assets/stisla/assets/js/stisla.js"></script>
 
     <!-- Template JS File -->

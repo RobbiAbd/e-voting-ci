@@ -51,19 +51,19 @@ $routes->group('voting', function($routes)
 $routes->group('admin', ['filter' => 'ceklogin'], function($routes)
 {
     $routes->add('/', 'Admin/Dashboard::index');
-    $routes->add('hasil', 'Admin/ResultVoting::index');
+    $routes->add('hasil', 'Admin/ResultVoting::index', ['filter' => 'cekpetugas']);
 
     // admin user routes
-    $routes->add('users', 'Admin/Users::index');
-    $routes->add('user/add', 'Admin/Users::add');
-    $routes->add('user/delete', 'Admin/Users::delete');
-    $routes->add('user/edit/(:num)', 'Admin/Users::edit');
+    $routes->add('users', 'Admin/Users::index', ['filter' => 'cekpetugas']);
+    $routes->add('user/add', 'Admin/Users::add', ['filter' => 'cekpetugas']);
+    $routes->add('user/delete', 'Admin/Users::delete', ['filter' => 'cekpetugas']);
+    $routes->add('user/edit/(:num)', 'Admin/Users::edit', ['filter' => 'cekpetugas']);
 
     //admin kandidat routes
-    $routes->add('kandidat', 'Admin/Kandidat::index');
-    $routes->add('kandidat/add', 'Admin/Kandidat::add');
-    $routes->add('kandidat/delete', 'Admin/Kandidat::delete');
-    $routes->add('kandidat/edit/(:num)', 'Admin/Kandidat::edit');
+    $routes->add('kandidat', 'Admin/Kandidat::index', ['filter' => 'cekpetugas']);
+    $routes->add('kandidat/add', 'Admin/Kandidat::add', ['filter' => 'cekpetugas']);
+    $routes->add('kandidat/delete', 'Admin/Kandidat::delete', ['filter' => 'cekpetugas']);
+    $routes->add('kandidat/edit/(:num)', 'Admin/Kandidat::edit', ['filter' => 'cekpetugas']);
 
     // admin token routes
     $routes->add('token', 'Admin/Token::index');
@@ -72,18 +72,18 @@ $routes->group('admin', ['filter' => 'ceklogin'], function($routes)
     $routes->add('token/delete_all', 'Admin/Token::delete_all');
 
     // admin pemilih routes
-    $routes->add('pemilih', 'Admin/Pemilih::index');
-    $routes->add('pemilih/delete', 'Admin/Pemilih::delete');
-    $routes->add('pemilih/delete_all', 'Admin/Pemilih::delete_all');
+    $routes->add('pemilih', 'Admin/Pemilih::index', ['filter' => 'cekpetugas']);
+    $routes->add('pemilih/delete', 'Admin/Pemilih::delete', ['filter' => 'cekpetugas']);
+    $routes->add('pemilih/delete_all', 'Admin/Pemilih::delete_all', ['filter' => 'cekpetugas']);
 });
 
 // ajax routes
 $routes->group('ajax', ['filter' => 'ceklogin'], function($routes)
 {
-    $routes->add('get_users', 'Admin/Users::get_users_ajax');
-    $routes->add('get_kandidat', 'Admin/Kandidat::get_kandidat_ajax');
+    $routes->add('get_users', 'Admin/Users::get_users_ajax', ['filter' => 'cekpetugas']);
+    $routes->add('get_kandidat', 'Admin/Kandidat::get_kandidat_ajax', ['filter' => 'cekpetugas']);
     $routes->add('get_token', 'Admin/Token::get_token_ajax');
-    $routes->add('get_pemilih', 'Admin/Pemilih::get_pemilih_ajax');
+    $routes->add('get_pemilih', 'Admin/Pemilih::get_pemilih_ajax', ['filter' => 'cekpetugas']);
 });
 
 /**

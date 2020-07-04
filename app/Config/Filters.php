@@ -12,6 +12,7 @@ class Filters extends BaseConfig
 		'honeypot' => \CodeIgniter\Filters\Honeypot::class,
 		'ceklogin' => \App\Filters\LoginFilter::class,
 		'cektoken' => \App\Filters\TokenFilter::class,
+		'cekpetugas' => \App\Filters\PetugasFilter::class,
 	];
 
 	// Always applied before every request

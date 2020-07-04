@@ -11,14 +11,12 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css">
 
-  
-
   <!-- Template CSS -->
   <link rel="stylesheet" href="/assets/stisla/assets/css/style.css">
   <link rel="stylesheet" href="/assets/stisla/assets/css/components.css">
   
   <!-- datatables css -->
-  <link rel="stylesheet" href="/assets/stisla/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/assets/DataTables/DataTables/css/dataTables.bootstrap4.min.css">
 
 
   <?= $this->renderSection('css') ?>
@@ -55,17 +53,20 @@
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">EVOTING</a>
+            <a href="<?= base_url('admin') ?>">EVOTING</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">EV</a>
+            <a href="<?= base_url('admin') ?>">EV</a>
           </div>
           <ul class="sidebar-menu">
               <li class="menu-header">Menu Admin</li>
+
               <li>
                 <a class="nav-link" href="<?= base_url('admin/dashboard') ?>"><i class="fas fa-fire"></i> <span>Dashboard</span></a>
               </li>
-
+                
+              <?php if (session()->get('id_level') != 2) : ?>  
+              
               <li>
                 <a class="nav-link" href="<?= base_url('admin/hasil') ?>"><i class="fas fa-fire"></i> <span>Lihat Hasil</span></a>
               </li>
@@ -81,6 +82,8 @@
               <li>
                 <a class="nav-link" href="<?= base_url('admin/pemilih') ?>"><i class="fas fa-fire"></i> <span>Pemilih</span></a>
               </li>
+
+            <?php endif; ?>
 
               <li>
                 <a class="nav-link" href="<?= base_url('admin/token') ?>"><i class="fas fa-fire"></i> <span>Token</span></a>
@@ -138,8 +141,7 @@
     <script src="/assets/bootstrap/popper.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 
-    <script src="/assets/stisla/node_modules/nicescroll/dist/jquery.nicescroll.min.js"></script>
-    <script src="/assets/stisla/node_modules/moment/min/moment.min.js"></script>
+    <script src="/assets/nicescroll/dist/jquery.nicescroll.min.js"></script>
     <script src="/assets/stisla/assets/js/stisla.js"></script>
     
 
@@ -151,7 +153,7 @@
   <!-- datatables -->
   <script src="/assets/DataTables/DataTables/js/jquery.dataTables.min.js"></script>
   <script src="/assets/DataTables/datatables.min.js"></script>
-  <script src="/assets/stisla/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="/assets/DataTables/DataTables/js/dataTables.bootstrap4.min.js"></script>
   
 
 

@@ -73,9 +73,6 @@
               <div class="card">
                 <div class="card-header">
                   <h4>Statistik Voting</h4>
-                  <div class="card-header-action">
-                      <a href="#" class="btn btn-primary">refresh</a>
-                  </div>
                 </div>
                 <div class="card-body">
                   <canvas id="myChart" height="182"></canvas>
@@ -113,7 +110,7 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('script') ?>
-  <script src="/assets/stisla/node_modules/chart.js/dist/Chart.min.js"></script>
+  <script src="/assets/chart.js/dist/Chart.min.js"></script>
 
   <script>
     var ctx = document.getElementById("myChart").getContext('2d');
