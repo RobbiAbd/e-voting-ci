@@ -1,4 +1,4 @@
-# CodeIgniter 4 Application Starter
+# E-Voting - Robbi Abdul Rohman
 
 Introduction
 ------------
