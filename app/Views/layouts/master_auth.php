@@ -17,6 +17,7 @@
 </head>
 
 <body>
+
   <div id="app">
     <?= $this->renderSection('content') ?>
   </div>

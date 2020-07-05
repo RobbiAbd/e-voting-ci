@@ -4,6 +4,15 @@
     <?= $title; ?>
 <?= $this->endSection() ?>
 
+<?= $this->section('css') ?>
+    <style>
+    	/*untuk menghilangkan bullet pada tag li*/
+    	.errors ul li {
+    		list-style-type: none;
+    	}
+    </style>
+<?= $this->endSection() ?>
+
 <?= $this->section('content') ?>
 <?= $this->include('partials/partials_user/navbar') ?>
 

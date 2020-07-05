@@ -131,6 +131,8 @@ class Users extends BaseController
 	        $data = [];
 	        $no = $request->getPost("start");
 	        foreach ($lists as $list) {
+	        	//hilangkan syntak if ini bila ingin
+	        	//menampilkan akun admin di datatable
 	        	if ($list->email != 'admin@gmail.com') {
 	                $no++;
 	                $row = [];

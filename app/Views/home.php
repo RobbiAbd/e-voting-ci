@@ -16,13 +16,13 @@
               <div class="row align-item-center">
                 <div class="col-12 col-sm-6 order-sm-2">
                   <div class="steps_image">
-                    <img src="/assets/img/undraw_security_o890.svg" class="img-fluid" width="500">
+                    <img src="/assets/img/undraw_celebration_0jvk.svg" class="img-fluid" width="500">
                   </div>
                 </div>
                 <div class="col-12 col-sm-6 order-sm-1">
-                  <p class="h1 text-dark text-uppercase">Selamat Datang di EVoting Osis App</p>  
+                  <p class="h1 text-dark text-uppercase">Selamat Datang di E-Voting Osis App</p>  
 
-                  <p class="mt-3 text-dark">Aplikasi E-voting di buat dengan PHP Framework Codeigniter 4 dan Bootstrap. </p>
+                  <p class="mt-3 text-dark">Aplikasi E-Voting ini dibuat untuk memudahkan dalam pengambilan suara pemilihan calon ketua dan wakil ketua osis. </p>
 
                   <div class="row">
                     <div class="col-md-6">
