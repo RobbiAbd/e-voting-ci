@@ -89,7 +89,13 @@
                 <a class="nav-link" href="<?= base_url('admin/token') ?>"><i class="fas fa-barcode"></i> <span>Token</span></a>
               </li>
               
-              
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-cogs"></i> <span>Settings</span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="<?= base_url('admin/user/change_password') ?>">Password</a></li>
+                  <li><a class="nav-link" href="#" onclick="alert('coming soon')">Token <small>(coming soon)</small></a></li>
+                </ul>
+              </li>
             
             </ul>
         </aside>
