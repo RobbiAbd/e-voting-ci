@@ -10,27 +10,10 @@
         <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
           <div class="p-4 m-3">
             <h4 class="text-dark font-weight-normal">Selamat Datang Di <span class="font-weight-bold">Evoting App</span></h4>
-            <p class="text-muted">Silahkan masuk dengan akun anda, jika ada kendala silahkan hubungi petugas.</p>
+            <p class="text-muted">Silahkan masuk dengan akun anda.</p>
             
             <!-- untuk form validasi error -->
-            <?php if (isset($validation)) : ?>
-              <div class="alert alert-danger" role="alert">
-                <?= $validation->listErrors() ?>
-              </div>
-            <?php endif; ?>
-
-            <!-- untuk pesan session -->
-            <?php if (session()->has('danger')) : ?>
-              <div class="alert alert-danger" role="alert">
-                <?= session()->getFlashdata('danger') ?>
-              </div>
-            <?php endif; ?>
-
-             <?php if (session()->has('success')) : ?>
-              <div class="alert alert-success" role="alert">
-                <?= session()->getFlashdata('success') ?>
-              </div>
-            <?php endif; ?>
+            <?= $this->include('partials/msg_validation') ?>
 
             <form method="POST" action="<?= base_url('login') ?>" >
               <?= csrf_field() ?>
@@ -61,7 +44,7 @@
             </form>
 
             <div class="text-center mt-5 text-small">
-              Copyright &copy; Evoting App. Made with 💙 by Stisla
+              Copyright &copy; Evoting App. Design by Stisla and Made by RobbiAbd
             </div>
           </div>
         </div>

@@ -18,6 +18,12 @@
 
 <body>
 
+  <style>
+    .min-vh-100 {
+      min-height: 101vh!important;
+    }
+  </style>
+
   <div id="app">
     <?= $this->renderSection('content') ?>
   </div>

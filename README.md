@@ -3,7 +3,7 @@
 Introduction
 ------------
 
-Aplikasi E-voting di buat dengan PHP Framework Codeigniter 4 dan Bootstrap. Untuk memudahkan dalam pengambilan suara voting.
+Aplikasi E-voting di buat dengan PHP Framework Codeigniter 4 dan Bootstrap. Aplikasi ini dibuat untuk memudahkan dalam pengambilan suara voting.
 
 Features
 --------

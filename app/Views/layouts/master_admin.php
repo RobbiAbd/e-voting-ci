@@ -107,24 +107,9 @@
           <div class="section-header">
             <h1><?= $title ?></h1>
           </div>
-          <?php if (isset($validation)) : ?>
-                    <div class="alert alert-danger" role="alert">
-                      <?= $validation->listErrors() ?>
-                    </div>
-                <?php endif; ?>
+          
+          <?= $this->include('partials/msg_validation') ?>
 
-                <!-- untuk pesan session -->
-                  <?php if (session()->has('danger')) : ?>
-                    <div class="alert alert-danger" role="alert">
-                      <?= session()->getFlashdata('danger') ?>
-                    </div>
-                  <?php endif; ?>
-
-                   <?php if (session()->has('success')) : ?>
-                    <div class="alert alert-success" role="alert">
-                      <?= session()->getFlashdata('success') ?>
-                    </div>
-                  <?php endif; ?>
         <?= $this->renderSection('content') ?>
         </section>
       </div>
