@@ -12,8 +12,11 @@
                   </div>
                   <div class="card-body">
                     <div class="row">
-                      <div class="col-md-8">
+                      <div class="col-md-12">
                         <div class="row">
+                          <div class="col-md-2">
+                            <a href="<?= base_url('admin/token/bulk_add') ?>" class="btn btn-primary mb-4">Bulk Token</a>
+                          </div>
                           <div class="col-md-2">
                             <a href="<?= base_url('admin/token/add') ?>" class="btn btn-primary mb-4">Tambah</a>
                           </div>
