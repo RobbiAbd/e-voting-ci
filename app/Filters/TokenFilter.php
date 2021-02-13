@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 
 class TokenFilter implements FilterInterface
 {
-    public function before(RequestInterface $request)
+    public function before(RequestInterface $request, $arguments = NULL)
     {
         if (! session()->has('token_key')) {
             session()->setFlashdata('danger', 'Silahkan masukan token terlebih dahulu');
@@ -16,7 +16,7 @@ class TokenFilter implements FilterInterface
 
     //--------------------------------------------------------------------
 
-    public function after(RequestInterface $request, ResponseInterface $response)
+    public function after(RequestInterface $request, ResponseInterface $response, $arguments = NULL)
     {
         // Do something here
     }
