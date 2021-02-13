@@ -42,7 +42,7 @@ class Users extends BaseController
     			$params = [
     				'nama' 		=> htmlspecialchars($this->request->getPost('nama')),
 			    	'email'		=> htmlspecialchars($this->request->getPost('email')),
-			    	'password'	=> htmlspecialchars(password_hash($this->request->getPost('nama'), PASSWORD_DEFAULT)),
+					'password'	=> htmlspecialchars(password_hash($this->request->getPost('password'), PASSWORD_DEFAULT)),
 			    	'id_level'	=> htmlspecialchars($this->request->getPost('level'))
     			];
 
