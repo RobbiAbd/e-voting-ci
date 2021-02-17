@@ -58,6 +58,7 @@ $routes->group('admin', ['filter' => 'ceklogin'], function($routes)
     $routes->add('user/add', 'Admin/Users::add', ['filter' => 'cekpetugas']);
     $routes->add('user/delete', 'Admin/Users::delete', ['filter' => 'cekpetugas']);
     $routes->add('user/edit/(:num)', 'Admin/Users::edit', ['filter' => 'cekpetugas']);
+    $routes->add('user/change_password', 'Admin/Users::change_password');
 
     //admin kandidat routes
     $routes->add('kandidat', 'Admin/Kandidat::index', ['filter' => 'cekpetugas']);

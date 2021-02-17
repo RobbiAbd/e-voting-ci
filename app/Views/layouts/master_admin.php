@@ -68,28 +68,34 @@
               <?php if (session()->get('id_level') != 2) : ?>  
               
               <li>
-                <a class="nav-link" href="<?= base_url('admin/hasil') ?>"><i class="fas fa-fire"></i> <span>Lihat Hasil</span></a>
+                <a class="nav-link" href="<?= base_url('admin/hasil') ?>"><i class="fas fa-poll"></i> <span>Lihat Hasil</span></a>
               </li>
 
               <li>
-                <a class="nav-link" href="<?= base_url('admin/users') ?>"><i class="fas fa-fire"></i> <span>Users</span></a>
+                <a class="nav-link" href="<?= base_url('admin/users') ?>"><i class="fas fa-user"></i> <span>Users</span></a>
               </li>
 
               <li>
-                <a class="nav-link" href="<?= base_url('admin/kandidat') ?>"><i class="fas fa-fire"></i> <span>Kandidat</span></a>
+                <a class="nav-link" href="<?= base_url('admin/kandidat') ?>"><i class="fas fa-users"></i> <span>Kandidat</span></a>
               </li>
 
               <li>
-                <a class="nav-link" href="<?= base_url('admin/pemilih') ?>"><i class="fas fa-fire"></i> <span>Pemilih</span></a>
+                <a class="nav-link" href="<?= base_url('admin/pemilih') ?>"><i class="fas fa-hand-pointer"></i> <span>Pemilih</span></a>
               </li>
 
             <?php endif; ?>
 
               <li>
-                <a class="nav-link" href="<?= base_url('admin/token') ?>"><i class="fas fa-fire"></i> <span>Token</span></a>
+                <a class="nav-link" href="<?= base_url('admin/token') ?>"><i class="fas fa-barcode"></i> <span>Token</span></a>
               </li>
               
-              
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-cogs"></i> <span>Settings</span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="<?= base_url('admin/user/change_password') ?>">Password</a></li>
+                  <li><a class="nav-link" href="#" onclick="alert('coming soon')">Token <small>(coming soon)</small></a></li>
+                </ul>
+              </li>
             
             </ul>
         </aside>
@@ -101,24 +107,9 @@
           <div class="section-header">
             <h1><?= $title ?></h1>
           </div>
-          <?php if (isset($validation)) : ?>
-                    <div class="alert alert-danger" role="alert">
-                      <?= $validation->listErrors() ?>
-                    </div>
-                <?php endif; ?>
+          
+          <?= $this->include('partials/msg_validation') ?>
 
-                <!-- untuk pesan session -->
-                  <?php if (session()->has('danger')) : ?>
-                    <div class="alert alert-danger" role="alert">
-                      <?= session()->getFlashdata('danger') ?>
-                    </div>
-                  <?php endif; ?>
-
-                   <?php if (session()->has('success')) : ?>
-                    <div class="alert alert-success" role="alert">
-                      <?= session()->getFlashdata('success') ?>
-                    </div>
-                  <?php endif; ?>
         <?= $this->renderSection('content') ?>
         </section>
       </div>
@@ -126,9 +117,6 @@
       <footer class="main-footer">
         <div class="footer-left">
           Copyright &copy; EVOTING APP 2020 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a> and Made by <a href="https://github.com/robbiabd">Robbi Abdul Rohman</a>
-        </div>
-        <div class="footer-right">
-          2.3.0
         </div>
       </footer>
     </div>

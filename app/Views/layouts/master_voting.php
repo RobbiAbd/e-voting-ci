@@ -12,7 +12,8 @@
 		<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css">
 
 		<link rel="stylesheet" href="/assets/css/style.css">
-
+		
+		<?= $this->renderSection('css') ?>
 </head>
 <body>
 

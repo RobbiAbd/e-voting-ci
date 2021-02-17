@@ -13,7 +13,7 @@ class TokenModel extends Model
     
 
     // datatables config
-    protected $column_order = array('token_key','jumlah_pengguna_token','expired_at');
+    protected $column_order = array(0,1,2,3,4,5,6);
     protected $column_search = array('token_key','jumlah_pengguna_token','expired_at');
     protected $order = array('created_at' => 'desc');
     protected $request;

@@ -13,7 +13,7 @@ class PemilihModel extends Model
     
 
     // datatables config
-    protected $column_order = array('token_key','created_at');
+    protected $column_order = array(0,1,2,3);
     protected $column_search = array('token_key');
     protected $order = array('created_at' => 'desc');
     protected $request;

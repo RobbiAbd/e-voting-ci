@@ -13,7 +13,7 @@ class UserModel extends Model
     
 
     // datatables config
-    protected $column_order = array('nama','email','level');
+    protected $column_order = array(0,1,2,3,4,5);
     protected $column_search = array('nama','email');
     protected $order = array('created_at' => 'desc');
     protected $request;

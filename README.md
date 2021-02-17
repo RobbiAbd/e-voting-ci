@@ -3,39 +3,44 @@
 Introduction
 ------------
 
-Aplikasi E-voting di buat dengan PHP Framework Codeigniter 4 dan Bootstrap.
+Aplikasi E-voting di buat dengan PHP Framework Codeigniter 4 dan Bootstrap. Aplikasi ini dibuat untuk memudahkan dalam pengambilan suara voting.
 
-Fitur
+Features
 --------
 
 - Crud Kandidat
+- Crud Pemilih
 - Crud User
 - Crud Token
+- Chart
+- Datatable Server Side
 - dll
 
 Requirements
 --------
 
-- php 7.2 keatas
-- composer
+- PHP 7.2 keatas
+- Composer
 
-##Setup
-*1.* Clone repo
+Setup
+--------
+
+*1.* Clone repo ini
 
 ```bash
 git clone https://github.com/RobbiAbd/e-voting-ci.git
 ```
 
-*2.* Buka project dan jalankan composer install
+*2.* Buka directory project dengan terminal dan jalankan composer install
 ```bash
 composer install
 ```
 
-*3.* import database
+*3.* import database yang ada di root project
 
 *4.* set .env
 
-Buat/buka file .env di root project dan set `CI_ENVIRONMENT`, `app.baseURL`, `app.indexPage`,  `database`:
+Buat file .env di root project dan copy semua yang ada di file env kemudian ubah `CI_ENVIRONMENT`, `app.baseURL`, `app.indexPage`,  `database`:
 
 ```bash
 # file .env
@@ -52,23 +57,28 @@ database.default.password =
 database.default.DBDriver = MySQLi
 ```
 
-*4.* Jalankan Development server
+*4.* Jalankan Development server di terminal
 
 ```php
-cd nama-project
+cd e-voting-ci
 
 php spark serve
 ```
 
-*5.* Open web browser http://localhost:8080
+*5.* Buka web browser kemudian ketikan url berikut http://localhost:8080
 
-Admin akun
+Akun Admin
 --------
 email : admin@gmail.com
+
 pass  : admin
 
 
-Petugas akun
+Akun Petugas
 --------
 email : petugas@gmail.com
+
 pass  : petugas
+
+
+Semoga Bermanfaat :)

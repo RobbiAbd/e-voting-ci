@@ -14,7 +14,7 @@ class Kandidat extends BaseController
 {
 	public function index()
 	{
-		$data['title'] = 'Kanditat';
+		$data['title'] = 'Kandidat';
 
 		return view('admin/kandidat/kandidat', $data);
 	}

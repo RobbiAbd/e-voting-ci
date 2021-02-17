@@ -121,6 +121,65 @@ class Users extends BaseController
 		return view('admin/users/edit_user', $data);
 	}
 
+
+	public function change_password()
+	{
+		helper(['form','url']);
+		$userModel = new UserModel();
+
+		if ($this->request->getMethod() == 'post') {
+			$rules = [
+				'old_password'		=> ['label' => 'Password Lama', 'rules'	=> 	'required'],
+				'new_password'		=> ['label' => 'Password Baru', 'rules' =>	'required|min_length[3]|matches[confirm_password]'],
+				'confirm_password'	=> ['label' => 'Konfirmasi Password', 'rules' => 'required|min_length[3]|matches[new_password]']
+			];
+
+			if ($this->validate($rules)) {
+				$old_password = htmlspecialchars($this->request->getPost('old_password'));
+				$new_password = htmlspecialchars($this->request->getPost('new_password'));
+				$confirm_password = htmlspecialchars($this->request->getPost('confirm_password'));
+
+				//cek apakah new pass sama dengan old pass
+				if ($new_password != $old_password) {
+					// get data user by session email
+					$user = $userModel->where('email', session()->get('email'))
+									->first();
+
+					//cek apakah password sama dengan yg ada di DB
+					if (password_verify($old_password, $user['password'])) {
+						$params = [
+							'password' => password_hash($new_password, PASSWORD_DEFAULT)
+						];
+
+						$update = $userModel->update($user['id_user'], $params);
+
+						if ($update) {
+		    				session()->setFlashdata('success', 'Berhasil mengubah password');
+		    				return redirect()->route('admin');
+		    			} else {
+		    				session()->setFlashdata('danger', 'Gagal mengubah password');
+		    				return redirect()->route('admin/users/change_password');
+		    			}
+
+					}else {
+						session()->setFlashdata('danger', 'Password salah');
+	    				return redirect()->route('admin/user/change_password');
+					}
+
+				}else {
+					session()->setFlashdata('danger', 'Password baru tidak boleh sama dengan password lama');
+	    			return redirect()->route('admin/user/change_password');
+				}
+
+			}else {
+				$data['validation'] = $this->validator;
+			}
+		}
+
+		$data['title'] = 'Change Password';
+		return view('admin/users/ganti_password', $data);
+	}
+
 	public function get_users_ajax()
 	{
 	  $request = Services::request();
@@ -131,6 +190,8 @@ class Users extends BaseController
 	        $data = [];
 	        $no = $request->getPost("start");
 	        foreach ($lists as $list) {
+	        	//hilangkan syntak if ini bila ingin
+	        	//menampilkan akun admin di datatable
 	        	if ($list->email != 'admin@gmail.com') {
 	                $no++;
 	                $row = [];

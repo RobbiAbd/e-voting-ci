@@ -4,6 +4,15 @@
     <?= $title; ?>
 <?= $this->endSection() ?>
 
+<?= $this->section('css') ?>
+    <style>
+    	/*untuk menghilangkan bullet pada tag li*/
+    	.errors ul li {
+    		list-style-type: none;
+    	}
+    </style>
+<?= $this->endSection() ?>
+
 <?= $this->section('content') ?>
 <?= $this->include('partials/partials_user/navbar') ?>
 
@@ -22,24 +31,7 @@
 							<h4>Selamat datang di aplikasi evoting, silahkan masukan token untuk memilih</h4>
 						</span>
 
-						<?php if (isset($validation)) : ?>
-			              <div class="alert alert-danger" role="alert">
-			                <?= $validation->listErrors() ?>
-			              </div>
-			          <?php endif; ?>
-
-			          <!-- untuk pesan session -->
-			            <?php if (session()->has('danger')) : ?>
-			              <div class="alert alert-danger" role="alert">
-			                <?= session()->getFlashdata('danger') ?>
-			              </div>
-			            <?php endif; ?>
-
-			             <?php if (session()->has('success')) : ?>
-			              <div class="alert alert-success" role="alert">
-			                <?= session()->getFlashdata('success') ?>
-			              </div>
-			            <?php endif; ?>
+						<?= $this->include('partials/msg_validation') ?>
 
 						<div class="row mt-3">
 							<div class="col-8">
