@@ -1,8 +1,16 @@
 <?php 
+
+/**
+ * E-Voting Codeigniter 4
+ * Robbi Abdul Rohman
+ * https://github.com/robbiabd
+ */
+
 namespace App\Models;
 
 use CodeIgniter\Model;
 use CodeIgniter\HTTP\RequestInterface;
+use Config\Services;
 
 class PemilihModel extends Model
 {
@@ -26,15 +34,16 @@ class PemilihModel extends Model
 
     public function _get_datatables_query()
     {
+        $request = Services::request();
         $i = 0;
         foreach ($this->column_search as $item){
-        if($this->request->getPost('search')['value']){ 
+        if($request->getPost('search')['value']){ 
             if($i===0){
                 $this->groupStart();
-                $this->like($item, $this->request->getPost('search')['value']);
+                $this->like($item, $request->getPost('search')['value']);
             }
             else{
-                $this->orLike($item, $this->request->getPost('search')['value']);
+                $this->orLike($item, $request->getPost('search')['value']);
             }
             if(count($this->column_search) - 1 == $i)
                 $this->groupEnd();
@@ -42,8 +51,8 @@ class PemilihModel extends Model
         $i++;
         }
 
-        if($this->request->getPost('order')){
-            $this->orderBy($this->column_order[$this->request->getPost('order')['0']['column']], $this->request->getPost('order')['0']['dir']);
+        if($request->getPost('order')){
+            $this->orderBy($this->column_order[$request->getPost('order')['0']['column']], $request->getPost('order')['0']['dir']);
         } 
         else if(isset($this->order)){
             $order = $this->order;
@@ -52,9 +61,10 @@ class PemilihModel extends Model
     }
 
     public function get_datatables(){
+        $request = Services::request();
         $this->_get_datatables_query();
-        if($this->request->getPost('length') != -1)
-        $this->limit($this->request->getPost('length'), $this->request->getPost('start'));
+        if($request->getPost('length') != -1)
+        $this->limit($request->getPost('length'), $request->getPost('start'));
         $query = $this->get();
         return $query->getResult();
     }

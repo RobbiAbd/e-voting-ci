@@ -1,9 +1,11 @@
-<?php 
+<?php
+
 /**
  * E-Voting Codeigniter 4
  * Robbi Abdul Rohman
  * https://github.com/robbiabd
  */
+
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
@@ -28,35 +30,33 @@ class Token extends BaseController
 		if ($this->request->getMethod() == 'post') {
 			$rules = [
 				'token_key' 			=> 'required|is_unique[token.token_key]',
-		    	'jumlah' 				=> 'required|integer|min_length[1]',
-		    	'expired_at'			=> 'required|integer'
-    		];
+				'jumlah' 				=> 'required|integer|min_length[1]',
+				'expired_at'			=> 'required|integer'
+			];
 
-    		if ($this->validate($rules)) {
+			if ($this->validate($rules)) {
 				$currentTime = time();
 
 				$currentTime = $currentTime + $this->request->getPost('expired_at');
 
-    			$params = [
-    				'token_key'				=> htmlspecialchars($this->request->getPost('token_key')),
-    				'jumlah_pengguna_token' => htmlspecialchars($this->request->getPost('jumlah')),
-    				'expired_at'			=> date('Y-m-d H:i:s', $currentTime)
-    			];
+				$params = [
+					'token_key'				=> htmlspecialchars($this->request->getPost('token_key')),
+					'jumlah_pengguna_token' => htmlspecialchars($this->request->getPost('jumlah')),
+					'expired_at'			=> date('Y-m-d H:i:s', $currentTime)
+				];
 
 				$insert = $tokenModel->insert($params);
-				
-    			if ($insert) {
-    				session()->setFlashdata('success', 'Berhasil menambah data');
-    				return redirect()->route('admin/token');
-    			} else {
-    				session()->setFlashdata('danger', 'Gagal menambah data');
-    				return redirect()->route('admin/token/add')->withInput();
-    			}
-    			
 
-    		}else {
-    			$data['validation'] = $this->validator;
-    		}
+				if ($insert) {
+					session()->setFlashdata('success', 'Berhasil menambah data');
+					return redirect()->route('admin/token');
+				} else {
+					session()->setFlashdata('danger', 'Gagal menambah data');
+					return redirect()->route('admin/token/add')->withInput();
+				}
+			} else {
+				$data['validation'] = $this->validator;
+			}
 		}
 
 		return view('admin/token/tambah_token', $data);
@@ -69,11 +69,11 @@ class Token extends BaseController
 
 		if ($this->request->getMethod() == 'post') {
 			$rules = [
-		    	'jumlah' 				=> 'required|integer|min_length[1]',
-		    	'expired_at'			=> 'required|integer'
-    		];
+				'jumlah' 				=> 'required|integer|min_length[1]',
+				'expired_at'			=> 'required|integer'
+			];
 
-    		if ($this->validate($rules)) {
+			if ($this->validate($rules)) {
 				$currentTime = time();
 
 				$currentTime = $currentTime + $this->request->getPost('expired_at');
@@ -82,31 +82,31 @@ class Token extends BaseController
 
 				$data_token = [];
 
-				for ($i=0; $i < $jumlah; $i++) { 
-	    			$params = [
-	    				'token_key'				=> $this->token_generate().$i,
-	    				'jumlah_pengguna_token' => 1,
-	    				'expired_at'			=> date('Y-m-d H:i:s', $currentTime),
-	    				'created_at'			=> date('Y-m-d H:i:s')
-	    			];
-					
+				for ($i = 0; $i < $jumlah; $i++) {
+					$index = $i + 1;
+
+					$params = [
+						'token_key'				=> $this->token_generate() . $index,
+						'jumlah_pengguna_token' => 1,
+						'expired_at'			=> date('Y-m-d H:i:s', $currentTime),
+						'created_at'			=> date('Y-m-d H:i:s')
+					];
+
 					array_push($data_token, $params);
 				}
 
 				$insert = $tokenModel->insertBatch($data_token);
-				
-    			if ($insert) {
-    				session()->setFlashdata('success', 'Berhasil menambah data');
-    				return redirect()->route('admin/token');
-    			} else {
-    				session()->setFlashdata('danger', 'Gagal menambah data');
-    				return redirect()->route('admin/token/add')->withInput();
-    			}
-    			
 
-    		}else {
-    			$data['validation'] = $this->validator;
-    		}
+				if ($insert) {
+					session()->setFlashdata('success', 'Berhasil menambah data');
+					return redirect()->route('admin/token');
+				} else {
+					session()->setFlashdata('danger', 'Gagal menambah data');
+					return redirect()->route('admin/token/add')->withInput();
+				}
+			} else {
+				$data['validation'] = $this->validator;
+			}
 		}
 
 		return view('admin/token/tambah_bulk_token', $data);
@@ -119,7 +119,7 @@ class Token extends BaseController
 		$id = htmlspecialchars($this->request->getPost('id'));
 
 		$delete = $tokenModel->delete($tokenModel->escapeString($id));
-		
+
 		if ($delete) {
 			session()->setFlashdata('success', 'Berhasil menghapus data');
 			return redirect()->route('admin/token');
@@ -134,7 +134,7 @@ class Token extends BaseController
 		$tokenModel = new TokenModel();
 
 		$delete = $tokenModel->truncate();
-		
+
 		if ($delete) {
 			session()->setFlashdata('success', 'Berhasil menghapus semua data');
 			return redirect()->route('admin/token');
@@ -146,49 +146,51 @@ class Token extends BaseController
 
 	private function token_generate()
 	{
-        $karakter = '!*ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789abcdefghijklmnopqrstupwxyz';
-        $string = '';
-        for ($i = 0; $i < 5; $i++) {
-            $pos = rand(0, strlen($karakter) - 1);
-            $string .= $karakter{$pos};
-        }
-        return $string;
+		$karakter = '!*ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789abcdefghijklmnopqrstupwxyz';
+		$string = '';
+		for ($i = 0; $i < 5; $i++) {
+			$pos = rand(0, strlen($karakter) - 1);
+			$string .= $karakter[$pos];
+		}
+		return $string;
 	}
 
 	public function get_token_ajax()
 	{
-	  $request = Services::request();
-	  $tokenModel = new TokenModel($request);
-	  $token_use = $tokenModel->users_token_count();
+		$request = Services::request();
+		$tokenModel = new TokenModel($request);
+		$token_use = $tokenModel->users_token_count();
 
 
-	  if($request->getMethod(true) == 'POST'){
-	    $lists = $tokenModel->get_datatables();
-	        $data = [];
-	        $no = $request->getPost("start");
-	        foreach ($lists as $list) {
-	                $no++;
-	                $row = [];
-	                $row[] = $no;
-	                $row[] = $list->token_key;
-	                $row[] = $list->jumlah_pengguna_token;
-	                foreach ($token_use as $token_val) {
-	                	if ($token_val['token_key'] == $list->token_key) {
-	                		$row[] = $token_val['total_pengguna_saat_ini'];
-	                	}
-	                }
-	                $row[] = $list->expired_at;
-	                $row[] = $list->created_at;
-	                $row[] = '<a class="btn btn-danger btn-delete" href="javascript:void(0)" data-id="'.$list->id_token.'">Hapus</a>';
-	                $data[] = $row;
-	    }
+		if ($request->getMethod(true) == 'POST') {
+			$lists = $tokenModel->get_datatables();
+			$data = [];
+			$no = $request->getPost("start");
+			foreach ($lists as $list) {
+				$no++;
+				$row = [];
+				$row[] = $no;
+				$row[] = $list->token_key;
+				$row[] = $list->jumlah_pengguna_token;
+				foreach ($token_use as $token_val) {
+					if ($token_val['token_key'] == $list->token_key) {
+						$row[] = $token_val['total_pengguna_saat_ini'];
+					}
+				}
+				$row[] = $list->expired_at;
+				$row[] = $list->created_at;
+				$row[] = '<a class="btn btn-danger btn-delete" href="javascript:void(0)" data-id="' . $list->id_token . '">Hapus</a>';
+				$data[] = $row;
+			}
 
-	    $output = ["draw" => $request->getPost('draw'),
-	                        "recordsTotal" => $tokenModel->count_all(),
-	                        "recordsFiltered" => $tokenModel->count_filtered(),
-	                        "data" => $data];
+			$output = [
+				"draw" => (int) $request->getPost('draw'),
+				"recordsTotal" => $tokenModel->count_all(),
+				"recordsFiltered" => $tokenModel->count_filtered(),
+				"data" => $data
+			];
 
-	    echo json_encode($output);
-	  }
+			echo json_encode($output);
+		}
 	}
 }

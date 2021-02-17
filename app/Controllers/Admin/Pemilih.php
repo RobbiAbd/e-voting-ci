@@ -1,9 +1,11 @@
-<?php 
+<?php
+
 /**
  * E-Voting Codeigniter 4
  * Robbi Abdul Rohman
  * https://github.com/robbiabd
  */
+
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
@@ -26,7 +28,7 @@ class Pemilih extends BaseController
 		$id = htmlspecialchars($this->request->getPost('id'));
 
 		$delete = $pemilihModel->delete($pemilihModel->escapeString($id));
-		
+
 		if ($delete) {
 			session()->setFlashdata('success', 'Berhasil menghapus data');
 			return redirect()->route('admin/pemilih');
@@ -41,7 +43,7 @@ class Pemilih extends BaseController
 		$pemilihModel = new PemilihModel();
 
 		$delete = $pemilihModel->truncate();
-		
+
 		if ($delete) {
 			session()->setFlashdata('success', 'Berhasil menghapus data');
 			return redirect()->route('admin/pemilih');
@@ -53,29 +55,31 @@ class Pemilih extends BaseController
 
 	public function get_pemilih_ajax()
 	{
-	  $request = Services::request();
-	  $pemilihModel = new PemilihModel($request);
+		$request = Services::request();
+		$pemilihModel = new PemilihModel($request);
 
-	  if($request->getMethod(true) == 'POST'){
-	    $lists = $pemilihModel->get_datatables();
-	        $data = [];
-	        $no = $request->getPost("start");
-	        foreach ($lists as $list) {
-	                $no++;
-	                $row = [];
-	                $row[] = $no;
-	                $row[] = $list->token_key;
-	                $row[] = $list->created_at;
-	                $row[] = '<a class="btn btn-danger btn-delete" href="javascript:void(0)" data-id="'.$list->id_pemilih.'">Hapus</a>';
-	                $data[] = $row;
-	    }
+		if ($request->getMethod(true) == 'POST') {
+			$lists = $pemilihModel->get_datatables();
+			$data = [];
+			$no = $request->getPost("start");
+			foreach ($lists as $list) {
+				$no++;
+				$row = [];
+				$row[] = $no;
+				$row[] = $list->token_key;
+				$row[] = $list->created_at;
+				$row[] = '<a class="btn btn-danger btn-delete" href="javascript:void(0)" data-id="' . $list->id_pemilih . '">Hapus</a>';
+				$data[] = $row;
+			}
 
-	    $output = ["draw" => $request->getPost('draw'),
-	                        "recordsTotal" => $pemilihModel->count_all(),
-	                        "recordsFiltered" => $pemilihModel->count_filtered(),
-	                        "data" => $data];
+			$output = [
+				"draw" => (int) $request->getPost('draw'),
+				"recordsTotal" => $pemilihModel->count_all(),
+				"recordsFiltered" => $pemilihModel->count_filtered(),
+				"data" => $data
+			];
 
-	    echo json_encode($output);
-	  }
+			echo json_encode($output);
+		}
 	}
 }
