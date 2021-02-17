@@ -1,4 +1,6 @@
-<?php namespace Config;
+<?php
+
+namespace Config;
 
 use CodeIgniter\Config\BaseConfig;
 
@@ -13,6 +15,8 @@ class Filters extends BaseConfig
 		'ceklogin' => \App\Filters\LoginFilter::class,
 		'cektoken' => \App\Filters\TokenFilter::class,
 		'cekpetugas' => \App\Filters\PetugasFilter::class,
+		'ceklevel1' => \App\Filters\Level1Filter::class,
+		'ceklevel2' => \App\Filters\Level2Filter::class,
 	];
 
 	// Always applied before every request

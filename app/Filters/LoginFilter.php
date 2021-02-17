@@ -1,4 +1,6 @@
-<?php namespace App\Filters;
+<?php
+
+namespace App\Filters;
 
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -8,9 +10,9 @@ class LoginFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = NULL)
     {
-        if (! session()->has('email')) {
+        if (!session()->has('email')) {
             session()->setFlashdata('danger', 'Silahkan login terlebih dahulu');
-        	return redirect()->route('login');
+            return redirect()->route('login');
         }
     }
 

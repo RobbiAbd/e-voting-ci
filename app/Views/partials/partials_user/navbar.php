@@ -20,6 +20,11 @@
       </li>
 
     </ul>
+    <?php if (session()->get('id_level') == 1 || session()->get('id_level') == 2 || session()->get('id_level') == 3 || session()->get('id_level') == 4) : ?>
+      <div class="auth mr-2">
+        <a href="<?= base_url('admin/') ?>" class="btn btn-warning">Dashboard</a>
+      </div>
+    <?php endif; ?>
     <div class="auth">
       <a href="<?= base_url('voting') ?>" class="btn btn-warning">Mulai Voting</a>
     </div>

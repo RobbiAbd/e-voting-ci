@@ -1,9 +1,11 @@
-<?php 
+<?php
+
 /**
  * E-Voting Codeigniter 4
  * Robbi Abdul Rohman
  * https://github.com/robbiabd
  */
+
 namespace App\Controllers\Auth;
 
 use App\Controllers\BaseController;
@@ -13,7 +15,7 @@ class Auth extends BaseController
 {
 	public function index()
 	{
-		helper(['form','url']);
+		helper(['form', 'url']);
 		$userModel = new UserModel();
 
 		$data['title'] = 'Login';
@@ -22,7 +24,7 @@ class Auth extends BaseController
 			// rules validation
 			$rules = [
 				'email'		=> 'required|valid_email',
-			    'password' 	=> 'required|min_length[3]'
+				'password' 	=> 'required|min_length[3]'
 			];
 
 			// form validation
@@ -32,7 +34,7 @@ class Auth extends BaseController
 
 				// ambil data user dari DB
 				$user = $userModel->where('email', $userModel->escapeString($email))
-						->first();
+					->first();
 
 				if ($user) {
 					if (password_verify($password, $user['password'])) {
@@ -54,23 +56,30 @@ class Auth extends BaseController
 							session()->setFlashdata('success', 'Berhasil login');
 
 							return redirect()->route('admin');
-						}else {
+						} elseif ($user['id_level'] == 3) {
+							session()->setFlashdata('success', 'Berhasil login');
+
+							return redirect()->route('admin');
+						} elseif ($user['id_level'] == 4) {
+							session()->setFlashdata('success', 'Berhasil login');
+
+							return redirect()->route('admin');
+						} else {
 							return redirect()->route('logout');
 						}
-						
-					}else{
+					} else {
 						// password salah
 						session()->setFlashdata('danger', 'Email atau Password salah');
 
 						return redirect('login')->withInput();
 					}
-				}else{
+				} else {
 					// user tidak terdaftar
 					session()->setFlashdata('danger', 'Maaf email dan password yang kamu masukan tidak terdaftar');
 
 					return redirect('login')->withInput();
 				}
-			}else{
+			} else {
 				// inputan salah
 				$data['validation'] = $this->validator;
 			}

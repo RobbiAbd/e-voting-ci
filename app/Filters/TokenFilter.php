@@ -1,4 +1,6 @@
-<?php namespace App\Filters;
+<?php
+
+namespace App\Filters;
 
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -8,9 +10,9 @@ class TokenFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = NULL)
     {
-        if (! session()->has('token_key')) {
+        if (!session()->has('token_key')) {
             session()->setFlashdata('danger', 'Silahkan masukan token terlebih dahulu');
-        	return redirect()->route('voting');
+            return redirect()->route('voting');
         }
     }
 
