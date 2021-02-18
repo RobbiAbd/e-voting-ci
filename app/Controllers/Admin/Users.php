@@ -42,10 +42,10 @@ class Users extends BaseController
 
 			if ($this->validate($rules)) {
 				$params = [
-					'nama' 		=> htmlspecialchars($this->request->getPost('nama')),
-					'email'		=> htmlspecialchars($this->request->getPost('email')),
-					'password'	=> htmlspecialchars(password_hash($this->request->getPost('password'), PASSWORD_DEFAULT)),
-					'id_level'	=> htmlspecialchars($this->request->getPost('level'))
+					'nama' 		=> $userModel->escapeString(esc($this->request->getPost('nama'))),
+					'email'		=> $userModel->escapeString(esc($this->request->getPost('email'))),
+					'password'	=> $userModel->escapeString(esc(password_hash($this->request->getPost('password'), PASSWORD_DEFAULT))),
+					'id_level'	=> $userModel->escapeString(esc($this->request->getPost('level'))),
 				];
 
 				$insert = $userModel->insert($params);
@@ -69,8 +69,8 @@ class Users extends BaseController
 	{
 		$userModel = new UserModel();
 
-		$id = htmlspecialchars($this->request->getPost('id'));
-		$delete = $userModel->delete($userModel->escapeString($id));
+		$id = $userModel->escapeString(esc($this->request->getPost('id')));
+		$delete = $userModel->delete($id);
 
 		if ($delete) {
 			session()->setFlashdata('success', 'Berhasil menghapus data');
@@ -87,7 +87,7 @@ class Users extends BaseController
 		$userModel = new UserModel();
 		$levelModel = new LevelModel();
 
-		$id = htmlspecialchars($this->request->uri->getSegment(4));
+		$id = $userModel->escapeString(esc($this->request->uri->getSegment(4)));
 
 		if ($this->request->getMethod() == 'post') {
 			$rules = [
@@ -97,8 +97,8 @@ class Users extends BaseController
 
 			if ($this->validate($rules)) {
 				$params = [
-					'nama' 		=> htmlspecialchars($this->request->getPost('nama')),
-					'id_level'	=> htmlspecialchars($this->request->getPost('level'))
+					'nama' 		=> $userModel->escapeString(esc($this->request->getPost('nama'))),
+					'id_level'	=> $userModel->escapeString(esc($this->request->getPost('level')))
 				];
 
 				$update = $userModel->update($id, $params);
@@ -136,9 +136,9 @@ class Users extends BaseController
 			];
 
 			if ($this->validate($rules)) {
-				$old_password = htmlspecialchars($this->request->getPost('old_password'));
-				$new_password = htmlspecialchars($this->request->getPost('new_password'));
-				$confirm_password = htmlspecialchars($this->request->getPost('confirm_password'));
+				$old_password = $userModel->escapeString(esc($this->request->getPost('old_password')));
+				$new_password = $userModel->escapeString(esc($this->request->getPost('new_password')));
+				$confirm_password = $userModel->escapeString(esc($this->request->getPost('confirm_password')));
 
 				//cek apakah new pass sama dengan old pass
 				if ($new_password != $old_password) {
@@ -186,7 +186,7 @@ class Users extends BaseController
 		if ($request->getMethod(true) == 'POST' && $request->isAJAX()) {
 			$lists = $users->get_datatables();
 			$data = [];
-			$no = $request->getPost("start");
+			$no = (int) $request->getPost("start");
 			foreach ($lists as $list) {
 				//hilangkan syntak if ini bila ingin
 				//menampilkan akun admin di datatable
@@ -194,8 +194,8 @@ class Users extends BaseController
 					$no++;
 					$row = [];
 					$row[] = $no;
-					$row[] = $list->nama;
-					$row[] = $list->email;
+					$row[] = esc($list->nama);
+					$row[] = esc($list->email);
 					$row[] = $list->id_level == 1 ? 'Administrator' : 'Petugas';
 					$row[] = $list->created_at;
 					$row[] = '<a class="btn btn-warning" href="' . base_url('admin/user/edit/' . $list->id_user) . '">Edit</a> 

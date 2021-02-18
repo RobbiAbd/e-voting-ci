@@ -15,7 +15,7 @@
 
         <h3 class="mt-4">Robbi Abdul Rohman</h3>
         <h5>
-          Junior Web Programmer
+          Web Developer
         </h5>
 
         <div class="social-link">

@@ -25,7 +25,7 @@ class Pemilih extends BaseController
 	{
 		$pemilihModel = new PemilihModel();
 
-		$id = htmlspecialchars($this->request->getPost('id'));
+		$id = $pemilihModel->escapeString(esc($this->request->getPost('id')));
 
 		$delete = $pemilihModel->delete($pemilihModel->escapeString($id));
 
@@ -61,7 +61,7 @@ class Pemilih extends BaseController
 		if ($request->getMethod(true) == 'POST' && $request->isAJAX()) {
 			$lists = $pemilihModel->get_datatables();
 			$data = [];
-			$no = $request->getPost("start");
+			$no = (int) $request->getPost("start");
 			foreach ($lists as $list) {
 				$no++;
 				$row = [];

@@ -51,9 +51,9 @@ class Kandidat extends BaseController
 
 				if ($uploadFile != false) {
 					$params = [
-						'nama' 			=> htmlspecialchars($this->request->getPost('nama')),
-						'visi'			=> htmlspecialchars($this->request->getPost('visi')),
-						'misi'			=> htmlspecialchars($this->request->getPost('misi')),
+						'nama' 			=> esc($this->request->getPost('nama')),
+						'visi'			=> esc($this->request->getPost('visi')),
+						'misi'			=> esc($this->request->getPost('misi')),
 						'avatar'		=> $uploadFile
 					];
 
@@ -88,15 +88,14 @@ class Kandidat extends BaseController
 
 	public function delete()
 	{
-		$kandidatModel = new KandidatModel();
-
-		$id = htmlspecialchars($this->request->getPost('id'));
+		$kandidatModel = new KandidatModel();		
+		$id = $kandidatModel->escapeString(esc($this->request->getPost('id')));
 		$getKandidat = $kandidatModel->find($kandidatModel->escapeString($id));
 
 		if ($getKandidat) {
 			$deleteFile = unlink('./assets/avatar/' . $getKandidat['avatar']);
 			if ($deleteFile) {
-				$delete = $kandidatModel->delete($kandidatModel->escapeString($id));
+				$delete = $kandidatModel->delete($id);
 				if ($delete) {
 					session()->setFlashdata('success', 'Berhasil menghapus data');
 					return redirect()->route('admin/kandidat');
@@ -119,7 +118,7 @@ class Kandidat extends BaseController
 		helper(['form']);
 		$kandidatModel = new KandidatModel();
 
-		$id = htmlspecialchars($this->request->uri->getSegment(4));
+		$id = $kandidatModel->escapeString(esc($this->request->uri->getSegment(4)));
 
 		if ($this->request->getMethod() == 'post') {
 			if ($_FILES['avatar']['name'] == "") {
@@ -144,9 +143,9 @@ class Kandidat extends BaseController
 			if ($this->validate($rules)) {
 				if ($_FILES['avatar']['name'] == "") {
 					$params = [
-						'nama' 			=> htmlspecialchars($this->request->getPost('nama')),
-						'visi'			=> htmlspecialchars($this->request->getPost('visi')),
-						'misi'			=> htmlspecialchars($this->request->getPost('misi'))
+						'nama' 			=> $kandidatModel->escapeString(esc($this->request->getPost('nama'))),
+						'visi'			=> $kandidatModel->escapeString(esc($this->request->getPost('visi'))),
+						'misi'			=> $kandidatModel->escapeString(esc($this->request->getPost('misi'))),
 					];
 				} else {
 					$getKandidat = $kandidatModel->find($id);
@@ -160,10 +159,10 @@ class Kandidat extends BaseController
 					}
 
 					$params = [
-						'nama' 			=> htmlspecialchars($this->request->getPost('nama')),
-						'visi'			=> htmlspecialchars($this->request->getPost('visi')),
-						'misi'			=> htmlspecialchars($this->request->getPost('misi')),
-						'avatar'		=> $uploadFile
+						'nama' 			=> $kandidatModel->escapeString(esc($this->request->getPost('nama'))),
+						'visi'			=> $kandidatModel->escapeString(esc($this->request->getPost('visi'))),
+						'misi'			=> $kandidatModel->escapeString(esc($this->request->getPost('misi'))),
+						'avatar'		=> $uploadFile,
 					];
 				}
 
@@ -194,15 +193,15 @@ class Kandidat extends BaseController
 		if ($request->getMethod(true) == 'POST' && $request->isAJAX()) {
 			$lists = $kandidat->get_datatables();
 			$data = [];
-			$no = $request->getPost("start");
+			$no = (int) $request->getPost("start");
 			foreach ($lists as $list) {
 				$no++;
 				$row = [];
 				$row[] = $no;
-				$row[] = $list->nama;
+				$row[] = esc($list->nama);
 				$row[] = esc($list->visi);
 				$row[] = esc($list->misi);
-				$row[] = '<img alt="image" src="/assets/avatar/' . $list->avatar . '" width="200" data-toggle="tooltip" title="' . $list->nama . '">';
+				$row[] = '<img alt="image" src="/assets/avatar/' . $list->avatar . '" width="200" data-toggle="tooltip" title="' . esc($list->nama) . '">';
 				$row[] = $list->created_at;
 				$row[] = '<a class="btn btn-warning" href="' . base_url('admin/kandidat/edit/' . $list->id_kandidat) . '">Edit</a> 
 	                			<a class="btn btn-danger btn-delete" href="javascript:void(0)" data-id="' . $list->id_kandidat . '">Hapus</a>';
