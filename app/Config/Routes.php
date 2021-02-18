@@ -85,6 +85,7 @@ $routes->group('ajax', ['filter' => 'ceklogin'], function($routes)
     $routes->add('get_kandidat', 'Admin/Kandidat::get_kandidat_ajax', ['filter' => 'cekpetugas']);
     $routes->add('get_token', 'Admin/Token::get_token_ajax');
     $routes->add('get_pemilih', 'Admin/Pemilih::get_pemilih_ajax', ['filter' => 'cekpetugas']);
+    $routes->add('get_chart_total_voting', 'Admin/ResultVoting::get_result_ajax', ['filter' => 'cekpetugas']);
 });
 
 /**

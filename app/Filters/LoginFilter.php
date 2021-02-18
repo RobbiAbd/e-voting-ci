@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 
 class LoginFilter implements FilterInterface
 {
-    public function before(RequestInterface $request)
+    public function before(RequestInterface $request, $arguments = null)
     {
         if (! session()->has('email')) {
             session()->setFlashdata('danger', 'Silahkan login terlebih dahulu');
@@ -16,7 +16,7 @@ class LoginFilter implements FilterInterface
 
     //--------------------------------------------------------------------
 
-    public function after(RequestInterface $request, ResponseInterface $response)
+    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
         // Do something here
     }

@@ -162,7 +162,7 @@ class Token extends BaseController
 		$token_use = $tokenModel->users_token_count();
 
 
-		if ($request->getMethod(true) == 'POST') {
+		if ($request->getMethod(true) == 'POST' && $request->isAJAX()) {
 			$lists = $tokenModel->get_datatables();
 			$data = [];
 			$no = $request->getPost("start");

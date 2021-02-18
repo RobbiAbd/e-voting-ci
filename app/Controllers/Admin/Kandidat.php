@@ -191,7 +191,7 @@ class Kandidat extends BaseController
 		$request = Services::request();
 		$kandidat = new KandidatModel($request);
 
-		if ($request->getMethod(true) == 'POST') {
+		if ($request->getMethod(true) == 'POST' && $request->isAJAX()) {
 			$lists = $kandidat->get_datatables();
 			$data = [];
 			$no = $request->getPost("start");

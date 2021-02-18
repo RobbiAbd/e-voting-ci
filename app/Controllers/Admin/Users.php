@@ -44,7 +44,7 @@ class Users extends BaseController
 				$params = [
 					'nama' 		=> htmlspecialchars($this->request->getPost('nama')),
 					'email'		=> htmlspecialchars($this->request->getPost('email')),
-					'password'	=> htmlspecialchars(password_hash($this->request->getPost('nama'), PASSWORD_DEFAULT)),
+					'password'	=> htmlspecialchars(password_hash($this->request->getPost('password'), PASSWORD_DEFAULT)),
 					'id_level'	=> htmlspecialchars($this->request->getPost('level'))
 				];
 
@@ -183,7 +183,7 @@ class Users extends BaseController
 		$request = Services::request();
 		$users = new UserModel($request);
 
-		if ($request->getMethod(true) == 'POST') {
+		if ($request->getMethod(true) == 'POST' && $request->isAJAX()) {
 			$lists = $users->get_datatables();
 			$data = [];
 			$no = $request->getPost("start");

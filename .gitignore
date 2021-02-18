@@ -60,6 +60,8 @@ writable/session/*
 writable/uploads/*
 !writable/uploads/index.html
 
+writable/assets/*
+
 writable/debugbar/*
 
 php_errors.log
@@ -125,3 +127,6 @@ nb-configuration.xml
 /results/
 /phpunit*.xml
 /.phpunit.*.cache
+
+# Public
+public/avatar/*

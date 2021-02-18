@@ -58,7 +58,7 @@ class Pemilih extends BaseController
 		$request = Services::request();
 		$pemilihModel = new PemilihModel($request);
 
-		if ($request->getMethod(true) == 'POST') {
+		if ($request->getMethod(true) == 'POST' && $request->isAJAX()) {
 			$lists = $pemilihModel->get_datatables();
 			$data = [];
 			$no = $request->getPost("start");

@@ -13,6 +13,7 @@ use App\Models\KandidatModel;
 use App\Models\TokenModel;
 use App\Models\PemilihModel;
 use App\Models\UserModel;
+use Config\Services;
 
 class ResultVoting extends BaseController
 {
@@ -38,5 +39,27 @@ class ResultVoting extends BaseController
 		$data['total_voting'] = $kandidatModel->get_kandidat_pemilih();
 
 		return view('admin/hasil/lihat_hasil', $data);
+	}
+
+	public function get_result_ajax()
+	{
+		$request = Services::request();
+
+		if ($request->getMethod(true) == 'POST' && $request->isAJAX()) {
+			$kandidatModel = new KandidatModel();
+			$dataset = $kandidatModel->get_kandidat_pemilih();
+
+			$data = [];
+			if (!empty($dataset)) {
+				foreach ($dataset as $key => $val) {
+					$data['labels'][$key] = $val['nama'];
+					$data['datas'][$key] = $val['total_voting'];
+				}
+			}
+
+			echo json_encode($data);
+		} else {
+			echo json_encode([]);
+		}
 	}
 }
