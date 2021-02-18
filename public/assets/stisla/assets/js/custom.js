@@ -6,3 +6,12 @@
  */
 
 "use strict";
+
+function getCsrf() {
+  return $("meta[name='_csrf'").attr("content");
+}
+
+function setCsrf(csrf) {
+  $('input[name="_csrf"]').val(csrf);
+  $("meta[name='_csrf'").attr("content", csrf);
+}

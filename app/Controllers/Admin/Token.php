@@ -158,6 +158,7 @@ class Token extends BaseController
 	public function get_token_ajax()
 	{
 		$request = Services::request();
+		$security = Services::security();
 		$tokenModel = new TokenModel($request);
 		$token_use = $tokenModel->users_token_count();
 
@@ -188,6 +189,7 @@ class Token extends BaseController
 				"recordsFiltered" => $tokenModel->count_filtered(),
 				"data" => $data
 			];
+			$output['csrf'] = $security->getCSRFHash();
 
 			echo json_encode($output);
 		}

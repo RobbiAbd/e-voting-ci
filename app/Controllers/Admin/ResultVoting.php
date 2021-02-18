@@ -44,12 +44,14 @@ class ResultVoting extends BaseController
 	public function get_result_ajax()
 	{
 		$request = Services::request();
+		$security = Services::security();
 
 		if ($request->getMethod(true) == 'POST' && $request->isAJAX()) {
 			$kandidatModel = new KandidatModel();
 			$dataset = $kandidatModel->get_kandidat_pemilih();
 
 			$data = [];
+			$data['csrf'] = $security->getCSRFHash();
 			if (!empty($dataset)) {
 				foreach ($dataset as $key => $val) {
 					$data['labels'][$key] = $val['nama'];

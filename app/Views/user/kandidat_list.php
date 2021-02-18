@@ -1,24 +1,24 @@
 <?= $this->extend('layouts/master_voting') ?>
 
 <?= $this->section('title') ?>
-    <?= $title; ?>
+<?= $title; ?>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-  <div class="container">
-    <div class="mt-4 mb-4 text-center">
-      <h3>Silahkan Pilih Kandidat dibawah ini</h3>
-      <hr class="yellow-line" />
+<div class="container">
+  <div class="mt-4 mb-4 text-center">
+    <h3>Silahkan Pilih Kandidat dibawah ini</h3>
+    <hr class="yellow-line" />
 
-      <?= $this->include('partials/msg_validation') ?>
+    <?= $this->include('partials/msg_validation') ?>
 
 
-    </div>
-    <div class="row mt-5 mb-5">
-      <?php foreach ($get_kandidat as $kandidat) : ?>
+  </div>
+  <div class="row mt-5 mb-5">
+    <?php foreach ($get_kandidat as $kandidat) : ?>
       <div class="col-md-4 mt-4 mb-4">
         <div class="card">
-          <img src="<?= base_url('assets/avatar/'.$kandidat['avatar']) ?>" class="card-img-top" alt="<?= $kandidat['nama'] ?>">
+          <img src="<?= base_url('assets/avatar/' . $kandidat['avatar']) ?>" class="card-img-top" alt="<?= $kandidat['nama'] ?>">
           <div class="card-body text-center">
             <h5 class="card-title"><?= $kandidat['nama'] ?></h5>
             <div class="row">
@@ -35,8 +35,8 @@
         </div>
       </div>
     <?php endforeach; ?>
-    </div>
   </div>
+</div>
 <?= $this->include('partials/partials_user/footer') ?>
 
 <!-- modal pilih kandidat -->
@@ -55,7 +55,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
         <form action="<?= base_url('voting/kandidat/pilih') ?>" method="POST">
-         <?= csrf_field(); ?>
+          <?= csrf_field(); ?>
           <input type="hidden" name="id" id="kandidat-id" value="">
           <button type="submit" class="btn btn-primary">Simpan Pilihan</button>
         </form>
@@ -93,22 +93,22 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('script') ?>
-  <script>
-    $(document).ready( function () {
-      $('.btn-visimisi').on('click', function(e) {
-        const visi = e.target.dataset.visi;
-        const misi = e.target.dataset.misi;
-        
-        $('.value-visi').html(visi);
-        $('.value-misi').html(misi);
-        $('#visiMisiModal').modal();
-      });
+<script>
+  $(document).ready(function() {
+    $('.btn-visimisi').on('click', function(e) {
+      const visi = e.target.dataset.visi;
+      const misi = e.target.dataset.misi;
 
-      $('.btn-pilih-kandidat').on('click', function(e) {
-        const id = e.target.dataset.id;
-        $('#kandidatModal #kandidat-id').val(id);
-        $('#kandidatModal').modal();
-      });
+      $('.value-visi').html(visi);
+      $('.value-misi').html(misi);
+      $('#visiMisiModal').modal();
     });
-  </script>
+
+    $('.btn-pilih-kandidat').on('click', function(e) {
+      const id = e.target.dataset.id;
+      $('#kandidatModal #kandidat-id').val(id);
+      $('#kandidatModal').modal();
+    });
+  });
+</script>
 <?= $this->endSection() ?>

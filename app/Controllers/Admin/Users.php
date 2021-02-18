@@ -181,9 +181,10 @@ class Users extends BaseController
 	public function get_users_ajax()
 	{
 		$request = Services::request();
+		$security = Services::security();
 		$users = new UserModel($request);
 
-		if ($request->getMethod(true) == 'POST' && $request->isAJAX()) {
+		if ($request->getMethod(true) == 'POST' && $security->CSRFVerify($request->getPost('_csrf')) && $request->isAJAX()) {
 			$lists = $users->get_datatables();
 			$data = [];
 			$no = (int) $request->getPost("start");
@@ -207,9 +208,10 @@ class Users extends BaseController
 			$output = [
 				"draw" => (int) $request->getPost('draw'),
 				"recordsTotal" => $users->count_all(),
-				"recordsFiltered" => $users->count_filtered(),
+				"recordsFiltered" => $users->count_filtered(),				
 				"data" => $data
 			];
+			$output['csrf'] = $security->getCSRFHash();
 
 			echo json_encode($output);
 		}

@@ -188,6 +188,7 @@ class Kandidat extends BaseController
 	public function get_kandidat_ajax()
 	{
 		$request = Services::request();
+		$security = Services::security();
 		$kandidat = new KandidatModel($request);
 
 		if ($request->getMethod(true) == 'POST' && $request->isAJAX()) {
@@ -214,6 +215,7 @@ class Kandidat extends BaseController
 				"recordsFiltered" => $kandidat->count_filtered(),
 				"data" => $data
 			];
+			$output['csrf'] = $security->getCSRFHash();
 
 			echo json_encode($output);
 		}

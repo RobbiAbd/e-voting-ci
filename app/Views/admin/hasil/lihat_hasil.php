@@ -113,9 +113,12 @@
     $.ajax({
       url: "<?= base_url('ajax/get_chart_total_voting') ?>",
       method: "POST",
-      dataType: "JSON",
+      data: {
+        _csrf: getCsrf()
+      },
       success: function(data) {
-        chart(data.labels, data.datas);        
+        setCsrf(data.csrf);
+        chart(data.labels, data.datas);
       }
     });
   }

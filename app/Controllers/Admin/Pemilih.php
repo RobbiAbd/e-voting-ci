@@ -56,6 +56,7 @@ class Pemilih extends BaseController
 	public function get_pemilih_ajax()
 	{
 		$request = Services::request();
+		$security = Services::security();
 		$pemilihModel = new PemilihModel($request);
 
 		if ($request->getMethod(true) == 'POST' && $request->isAJAX()) {
@@ -78,6 +79,7 @@ class Pemilih extends BaseController
 				"recordsFiltered" => $pemilihModel->count_filtered(),
 				"data" => $data
 			];
+			$output['csrf'] = $security->getCSRFHash();
 
 			echo json_encode($output);
 		}

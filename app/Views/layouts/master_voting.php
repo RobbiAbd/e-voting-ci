@@ -12,6 +12,8 @@
  	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
  	<title><?= $this->renderSection('title') ?></title>
 
+ 	<?= csrf_meta() ?>
+
  	<!-- Bootstrap -->
  	<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
 
@@ -34,6 +36,9 @@
  	<script src="/assets/bootstrap/jquery/jquery.min.js"></script>
  	<script src="/assets/bootstrap/popper.js"></script>
  	<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+
+ 	<!-- Template JS File -->
+ 	<script src="/assets/stisla/assets/js/custom.js"></script>
 
  	<?= $this->renderSection('script') ?>
  </body>
