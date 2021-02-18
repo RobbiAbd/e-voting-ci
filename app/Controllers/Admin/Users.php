@@ -184,7 +184,7 @@ class Users extends BaseController
 		$security = Services::security();
 		$users = new UserModel($request);
 
-		if ($request->getMethod(true) == 'POST' && $security->CSRFVerify($request->getPost('_csrf')) && $request->isAJAX()) {
+		if ($request->getMethod(true) == 'POST' && $request->isAJAX()) {
 			$lists = $users->get_datatables();
 			$data = [];
 			$no = (int) $request->getPost("start");
