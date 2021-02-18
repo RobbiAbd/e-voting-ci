@@ -117,6 +117,7 @@
         _csrf: getCsrf()
       },
       success: function(data) {
+        data = JSON.parse(data);
         setCsrf(data.csrf);
         chart(data.labels, data.datas);
       }
